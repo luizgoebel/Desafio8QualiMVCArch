@@ -1,0 +1,71 @@
+﻿@model Application.DTOs.UsuarioDTO
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<body>
+    <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+        <div class="widget-content widget-content-area br-6">
+            <div class="container">
+
+                <h2>Detalhes usuário</h2>
+                <hr />
+
+                <div class="table-responsive mb-4 mt-4">
+                    <table id="default-ordering" class="table table-hover" style="width:100%">
+                        <thead>
+                            <tr class="text-center">
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Id)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Nome)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Empresa)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Email)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TelefonePessoal)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TelefoneComercial)
+                                </th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="text-center">
+                                <td>
+                                    @Html.DisplayFor(model => model.Id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.Nome)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.Empresa)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.TelefonePessoal)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.TelefoneComercial)
+                                </td>
+                                <td>
+                                    <a asp-action="Deletar" asp-route-id=" @Html.DisplayFor(model => model.Id)" class="btn btn-danger"> <i class="fas fa-trash-alt"></i> </a> |
+                                    <a asp-action="Editar" asp-route-id=" @Html.DisplayFor(model => model.Id)" class="btn btn-primary">  <i class="fas fa-edit"></i> </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <a href="~/home/Index" class="btn btn-primary">Voltar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

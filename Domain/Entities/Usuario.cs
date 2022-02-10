@@ -21,6 +21,10 @@ namespace Domain.Entities
                "Nome inválido, Nome é obrigatório");
 
             Nome = nome;
+            Empresa = empresa;
+            Email = email;
+            TelefonePessoal = telefonePessoal;
+            TelefoneComercial = telefoneComercial;
         }
 
         public Usuario(int id, string nome, string empresa, string email, string telefonePessoal, string telefoneComercial)

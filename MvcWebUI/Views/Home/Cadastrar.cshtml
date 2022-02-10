@@ -1,0 +1,49 @@
+﻿@model Application.DTOs.UsuarioDTO
+@{
+    ViewData["Title"] = "Cadastrar";
+}
+
+<body>
+    <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+        <div class="widget-content widget-content-area br-6">
+            <div class="container">
+
+
+
+                <h2>Cadastrar</h2>
+                <h6>Novo usuário</h6>
+                <hr />
+                <form method="post" asp-action="Cadastrar">
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label asp-for="Nome"></label>
+                            <input asp-for="Nome" class="form-control" placeholder="Digite o Nome" required>
+                            <span asp-validation-for="Nome" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="Empresa"></label>
+                            <input asp-for="Empresa" class="form-control" placeholder="Digite a empresa">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="Email"></label>
+                            <input type="email" asp-for="Email" class="form-control" placeholder="Digite o email">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Telefone Pessoal</label>
+                            <input asp-for="TelefonePessoal" class="form-control" placeholder="Digite o telefone pessoal">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Telefone Comercial</label>
+                            <input asp-for="TelefoneComercial" class="form-control" placeholder="Digite o telefone comercial">
+                        </div>
+                    </div>
+                    <input type="submit" name="name" class="btn btn-success" value="Cadastrar" />
+                    <a href="~/home/Index" class="btn btn-primary">Voltar</a>
+                </form>
+
+
+
+            </div>
+        </div>
+    </div>
+</body>

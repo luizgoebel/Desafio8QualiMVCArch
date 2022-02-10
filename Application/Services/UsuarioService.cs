@@ -30,7 +30,7 @@ namespace Application.Services
 
         public async Task<UsuarioDTO> GetById(int? id)
         {
-            var usuarioEntity = _usuarioRepository.GetByIdAsync(id);
+            var usuarioEntity = await _usuarioRepository.GetByIdAsync(id);
             return _mapper.Map<UsuarioDTO>(usuarioEntity);
         }
 

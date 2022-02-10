@@ -1,4 +1,5 @@
-﻿using Application.Interfaces;
+﻿using Application.DTOs;
+using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MvcWebUI.Models;
@@ -24,6 +25,64 @@ namespace MvcWebUI.Controllers
         {
             var result = await _usuarioService.GetUsuarios();
             return View(result);
+        }
+
+        [HttpGet]
+        public IActionResult Cadastrar()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Cadastrar(UsuarioDTO usuario)
+        {
+            if (ModelState.IsValid)
+            {
+                await _usuarioService.Add(usuario);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(usuario);
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Deletar(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var usuario = await _usuarioService.GetById(id);
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+            return View(usuario);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeletarConfirm(int id)
+        {
+            var usuario = await _usuarioService.GetById(id);
+            await _usuarioService.Remove(usuario.Id);
+            return RedirectToAction(nameof(Index));
+
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Detalhes(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var usuario = await _usuarioService.GetById(id);
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+            return View(usuario);
         }
 
 
