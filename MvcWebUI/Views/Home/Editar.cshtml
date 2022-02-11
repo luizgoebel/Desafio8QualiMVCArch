@@ -1,16 +1,16 @@
 ﻿@model Application.DTOs.UsuarioDTO
 @{
-    ViewData["Title"] = "Cadastrar";
+    ViewData["Title"] = "Editar";
 }
 
 <body>
     <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
         <div class="widget-content widget-content-area br-6">
             <div class="container">
-                <h2>Cadastrar</h2>
-                <h6>Novo usuário</h6>
+                <h2>Editar usuário</h2>
                 <hr />
-                <form method="post" asp-action="Cadastrar">
+                <form asp-action="Editar">
+                    <input type="hidden" asp-for="Id" />
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label asp-for="Nome"></label>
@@ -34,7 +34,7 @@
                             <input asp-for="TelefoneComercial" class="form-control" placeholder="Digite o telefone comercial">
                         </div>
                     </div>
-                    <input type="submit" name="name" class="btn btn-success" value="Cadastrar" />
+                    <input type="submit" name="name" class="btn btn-success" value="Confirmar" />
                     <a href="~/home/Index" class="btn btn-primary">Voltar</a>
                 </form>
             </div>

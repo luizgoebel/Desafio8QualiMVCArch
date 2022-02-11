@@ -24,12 +24,14 @@ namespace MvcWebUI.Controllers
         public async Task<IActionResult> Index()
         {
             var result = await _usuarioService.GetUsuarios();
+
             return View(result);
         }
 
         [HttpGet]
         public IActionResult Cadastrar()
         {
+
             return View();
         }
         [HttpPost]
@@ -38,12 +40,40 @@ namespace MvcWebUI.Controllers
             if (ModelState.IsValid)
             {
                 await _usuarioService.Add(usuario);
+
                 return RedirectToAction("Index");
             }
             else
             {
+
                 return View(usuario);
             }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Editar(int id)
+        {
+            var usuario = await _usuarioService.GetById(id);
+
+            if (usuario == null)
+            {
+
+                return NotFound();
+            }
+
+            return View(usuario);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Editar(UsuarioDTO usuario)
+        {
+            if (usuario == null)
+            {
+
+                return NotFound();
+            }
+            await _usuarioService.Update(usuario);
+
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -51,13 +81,16 @@ namespace MvcWebUI.Controllers
         {
             if (id == null)
             {
+
                 return NotFound();
             }
             var usuario = await _usuarioService.GetById(id);
             if (usuario == null)
             {
+
                 return NotFound();
             }
+
             return View(usuario);
         }
 
@@ -66,8 +99,8 @@ namespace MvcWebUI.Controllers
         {
             var usuario = await _usuarioService.GetById(id);
             await _usuarioService.Remove(usuario.Id);
-            return RedirectToAction(nameof(Index));
 
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpGet]
@@ -75,13 +108,16 @@ namespace MvcWebUI.Controllers
         {
             if (id == null)
             {
+
                 return NotFound();
             }
             var usuario = await _usuarioService.GetById(id);
             if (usuario == null)
             {
+
                 return NotFound();
             }
+
             return View(usuario);
         }
 
