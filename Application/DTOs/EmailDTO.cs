@@ -17,6 +17,6 @@ namespace Application.DTOs
         public int UsuarioId { get; set; }
         public Usuario Usuario { get; set; }
 
-        public IList<Email> Emails { get; set; }
+        public IList<EmailDTO> Emails { get; set; }
     }
 }

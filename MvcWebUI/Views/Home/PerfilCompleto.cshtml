@@ -13,11 +13,15 @@
                 <hr />
                 <dl>
                     <dt><h5>Emails :</h5></dt>
-                    @foreach (var item in Model.Emails)
-                    {
-                        <dd>@item.Endereco</dd>
-                    }
+
+                    <dd>@Model.Emails</dd>
+                    @*@foreach (var item in Model.Emails.ToList())
+                        {
+                            <dd>@item.Endereco</dd>
+                        }*@
                 </dl>
+                <hr />
+                <a href="~/home/Index" class="btn btn-primary">Voltar</a>
             </div>
         </div>
     </div>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -22,6 +23,6 @@ namespace Application.DTOs
         [DisplayName("Telefone Comercial")]
         public string TelefoneComercial { get; set; }
 
-        public IEnumerable<EmailDTO> Emails { get; set; }
+        public IList<EmailDTO> Emails { get; set; }
     }
 }

@@ -139,7 +139,7 @@ namespace MvcWebUI.Controllers
             }
         }
 
-       
+
         public async Task<IActionResult> PerfilCompleto(int? id)
         {
             if (id == null)
