@@ -1,4 +1,6 @@
-﻿@model Application.DTOs.UsuarioDTO
+﻿@using Newtonsoft.Json;
+@model Application.DTOs.UsuarioDTO
+
 @{
     ViewData["Title"] = "Detalhes";
 }
@@ -48,7 +50,7 @@
                                     @Html.DisplayFor(model => model.Empresa)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(model => model.Email)
+                                    <a asp-action="PerfilCompleto" asp-route-id="@Model.Id" class="text-info"> @Html.DisplayFor(model => model.Email)  </a>
                                 </td>
                                 <td>
                                     @Html.DisplayFor(model => model.TelefonePessoal)
@@ -57,6 +59,9 @@
                                     @Html.DisplayFor(model => model.TelefoneComercial)
                                 </td>
                                 <td>
+                                    <btn class="btn btn-success" onclick='criarEmail(@Html.Raw(JsonConvert.SerializeObject(@Model.Id)))' style="cursor: pointer;">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                    </btn> |
                                     <a asp-action="Deletar" asp-route-id="@Model.Id" class="btn btn-danger"> <i class="fas fa-trash-alt"></i> </a> |
                                     <a asp-action="Editar" asp-route-id=" @Model.Id" class="btn btn-primary">  <i class="fas fa-edit"></i> </a>
                                 </td>
@@ -69,3 +74,37 @@
         </div>
     </div>
 </body>
+
+<div class="modal animated fadeInUp custo-fadeInUp show" id="CriarEmail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myLargeModalLabel">Usuário <b>@Model.Nome</b></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" asp-action="CriarEmail" id="frmCad">
+                    <input asp-for="Id" id="id" class="form-control" readonly hidden>
+                    <div class="form-group col-md-4">
+                        <label><b>Novo Email</b></label>
+                        <input asp-for="Email" id="email" class="form-control" placeholder="Digite o Email" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" onclick="this.disabled = true; frmCad.submit();" class="btn btn-success">Cadastrar</button>
+                <button class="btn btn-danger" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function criarEmail(id) {
+        $('#CriarEmail').modal('show');
+        $('#id').val(id);
+    };
+</script>

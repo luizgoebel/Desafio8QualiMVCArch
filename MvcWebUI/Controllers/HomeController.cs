@@ -1,6 +1,8 @@
 ﻿using Application.DTOs;
 using Application.Interfaces;
+using Desafio8QualiMVC.Infra.Data.Context;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using MvcWebUI.Models;
 using System;
@@ -14,10 +16,17 @@ namespace MvcWebUI.Controllers
     public class HomeController : Controller
     {
         private readonly IUsuarioService _usuarioService;
+        private readonly IEmailService _emailService;
+        private readonly ApplicationDbContext _dbContext;
 
-        public HomeController(IUsuarioService usuarioService)
+        [BindProperty]
+        public int UsuarioId { get; set; }
+
+        public HomeController(IUsuarioService usuarioService, IEmailService emailService, ApplicationDbContext dbContext)
         {
             _usuarioService = usuarioService;
+            _emailService = emailService;
+            _dbContext = dbContext;
         }
 
         public async Task<IActionResult> Index()
@@ -31,6 +40,11 @@ namespace MvcWebUI.Controllers
         {
             return View();
         }
+        /// <summary>
+        /// Ao cadastrar um usuário ele cadastra um email na base de usuarios como email principal.
+        /// </summary>
+        /// <param name="usuario"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> Cadastrar(UsuarioDTO usuario)
         {
@@ -56,6 +70,11 @@ namespace MvcWebUI.Controllers
             return View(usuario);
         }
 
+        /// <summary>
+        /// edição de usuario permite editar o objeto com seu email princial também
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> Editar(UsuarioDTO usuario)
         {
@@ -74,12 +93,9 @@ namespace MvcWebUI.Controllers
             {
                 return NotFound();
             }
-            var usuario = await _usuarioService.GetById(id);
-            if (usuario == null)
-            {
-                return NotFound();
-            }
-            return View(usuario);
+            var result = await _emailService.GetEmails();
+
+            return View(result);
         }
 
         [HttpPost]
@@ -103,6 +119,36 @@ namespace MvcWebUI.Controllers
                 return NotFound();
             }
             return View(usuario);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CriarEmail(int id, string email)
+        {
+            EmailDTO emailDto = new EmailDTO();
+            emailDto.UsuarioId = id;
+            emailDto.Endereco = email;
+
+            if (emailDto.Endereco != null)
+            {
+                await _emailService.Add(emailDto);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(emailDto);
+            }
+        }
+
+       
+        public async Task<IActionResult> PerfilCompleto(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var usuarioDto = await _usuarioService.GetById(id);
+
+            return View(usuarioDto);
         }
 
 

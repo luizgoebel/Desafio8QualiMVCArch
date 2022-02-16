@@ -11,6 +11,7 @@ namespace Application.Mappings
         public DomainToDTOMappingProfile()
         {
             CreateMap<Usuario, UsuarioDTO>().ReverseMap();
+            CreateMap<Email, EmailDTO>().ReverseMap();
         }
     }
 }

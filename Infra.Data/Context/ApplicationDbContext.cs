@@ -10,6 +10,7 @@ namespace Desafio8QualiMVC.Infra.Data.Context
         }
 
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Email> Emails { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

@@ -25,8 +25,9 @@ namespace Infra.IoC
             b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
 
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
-
+            services.AddScoped<IEmailRepository, EmailRepository>();
             services.AddScoped<IUsuarioService, UsuarioService>();
+            services.AddScoped<IEmailService, EmailService>();
             services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
 
             return services;

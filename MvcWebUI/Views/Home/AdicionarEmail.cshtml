@@ -1,0 +1,29 @@
+﻿@*@model Application.DTOs.EmailDTO
+@{
+    ViewData["Title"] = "Cad Email";
+}
+
+<body>
+    <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+        <div class="widget-content widget-content-area br-6">
+            <div class="container">
+                <h2>Cadastrar</h2>
+                <h6>Novo Email</h6>
+                <hr />
+                <form method="post" asp-action="Cadastrar">
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <input asp-for="UsuarioId" value="@Model.Usuario.Id" class="form-control" hidden>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Email</label>
+                            <input type="email" asp-for="Endereco" class="form-control" placeholder="Digite o email">
+                        </div>
+                    </div>
+                    <input type="submit" name="name" class="btn btn-success" value="Cadastrar" />
+                    <a href="~/home/Index" class="btn btn-primary">Voltar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>*@

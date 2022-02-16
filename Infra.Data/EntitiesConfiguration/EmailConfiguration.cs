@@ -9,14 +9,12 @@ using System.Threading.Tasks;
 
 namespace Infra.Data.EntitiesConfiguration
 {
-    public class UsuarioConfiguration : IEntityTypeConfiguration<Usuario>
+    public class EmailConfiguration : IEntityTypeConfiguration<Email>
     {
-        public void Configure(EntityTypeBuilder<Usuario> builder)
+        public void Configure(EntityTypeBuilder<Email> builder)
         {
             builder.HasKey(t => t.Id);
-            builder.Property(p => p.Nome).HasMaxLength(100).IsRequired();
-
-            builder.HasMany(x => x.Emails).WithOne(x => x.Usuario).HasForeignKey(x => x.UsuarioId);
+            builder.Property(p => p.Endereco).IsRequired();
         }
     }
 }

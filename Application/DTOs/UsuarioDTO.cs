@@ -21,5 +21,7 @@ namespace Application.DTOs
         public string TelefonePessoal { get; set; }
         [DisplayName("Telefone Comercial")]
         public string TelefoneComercial { get; set; }
+
+        public IEnumerable<EmailDTO> Emails { get; set; }
     }
 }

@@ -1,0 +1,26 @@
+﻿@model Application.DTOs.UsuarioDTO
+
+@{
+    ViewData["Title"] = "Perfil Completo";
+}
+
+<body>
+    <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+        <div class="widget-content widget-content-area br-6">
+            <div class="container">
+                <h2>Usuário <b>@Model.Nome</b></h2>
+                <h6>Email Principal:</h6> <h6><b>@Model.Email</b></h6>
+                <hr />
+                <dl>
+                    <dt><h5>Emails :</h5></dt>
+                    @foreach (var item in Model.Emails)
+                    {
+                        <dd>@item.Endereco</dd>
+                    }
+                </dl>
+            </div>
+        </div>
+    </div>
+</body>
+
+

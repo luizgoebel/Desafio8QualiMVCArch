@@ -15,6 +15,8 @@ namespace Domain.Entities
         public string TelefonePessoal { get; private set; }
         public string TelefoneComercial { get; private set; }
 
+        public ICollection<Email> Emails { get; set; }
+
         private void ValidateDomain(string nome, string empresa, string email, string telefonePessoal, string telefoneComercial)
         {
             DomainExceptionValidation.When(string.IsNullOrEmpty(nome),
